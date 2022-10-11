@@ -222,20 +222,6 @@ ILoop:
     PrintString baseInputMessage
     ReadString inputBuffer, 256
 
-    NumberToString 2536, testBuff
-    PrintString testBuff
-    PrintCLRF
-
-    CompareStrings inputBuffer, dateCommand
-    cmp ax, 0
-    je .false
-    PrintString trueS
-    PrintCLRF
-    jmp .end
-    .false:
-    PrintString falseS
-    PrintCLRF
-
     .end:
     ClearBuffer inputBuffer, 128 ; Clear input buffer
 jmp ILoop
@@ -244,12 +230,8 @@ jmp ILoop
 ;Data
 
 baseInputMessage: db "bash > ", 0
-dateCommand: db "date", 0
-trueS: db "True", 0 
-falseS: db "False", 0
-
 inputBuffer:
- times 128 db 0
+ times 32 db 0
 testBuff: db "NumberToString", 0
 times 510 - ($-$$) db 0
 dw 0xaa55
