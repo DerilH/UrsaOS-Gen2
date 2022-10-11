@@ -226,15 +226,15 @@ ILoop:
     PrintString testBuff
     PrintCLRF
 
-    ;CompareStrings inputBuffer, dateCommand
-    ;cmp ax, 0
-    ;je .false
-    ;PrintString trueS
-    ;PrintCLRF
-    ;jmp .end
-    ;.false:
-    ;PrintString falseS
-    ;PrintCLRF
+    CompareStrings inputBuffer, dateCommand
+    cmp ax, 0
+    je .false
+    PrintString trueS
+    PrintCLRF
+    jmp .end
+    .false:
+    PrintString falseS
+    PrintCLRF
 
     .end:
     ClearBuffer inputBuffer, 128 ; Clear input buffer
