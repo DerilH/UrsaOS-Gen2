@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "stack": "cpp",
+        "type_traits": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp"
+    },
+    "C_Cpp.default.cStandard": "gnu17",
+    "C_Cpp.default.cppStandard": "gnu++23",
+    "C_Cpp.default.compileCommands": "",
+    "C_Cpp.default.intelliSenseMode": "linux-gcc-x64"
+}
