@@ -1,28 +1,8 @@
-//#include "../headers/IDT.h"
-#pragma once
-#include <stdint.h>
-#include "../headers/Print.h"
-#include "../headers/IO.h"
-#include "../headers/string.h"
-#include "../headers/KBScanCodeSet1.h"
-#include "../headers/KeyboardHandler.h"
-
-struct IDT
-{
-    uint16_t offset_low;
-    uint16_t selector;
-    uint8_t ist;
-    uint8_t types_attr;
-    uint16_t offset_mid;
-    uint32_t offset_high;
-    uint32_t re_zero;
-};
+#include "../headers/IDT.h"
 
 extern IDT _idt[256];
 extern uint64_t isr1;
 extern "C" void LoadIDT();
-
-
 
 void (*KeyboardHandle)(uint8_t scanCode, uint8_t chr);
 
@@ -51,8 +31,8 @@ extern "C" void isr1_handler()
     if(scanCode < 0x3a)
     {
         chr = KBSet1::ScanCodeLookupTable[scanCode];
-        KeyboardHandler(scanCode, chr);
     }
+    KeyboardHandler(scanCode, chr);
 	outb(0x20, 0x20);
 	outb(0xa0, 0x20);
 }

@@ -8,3 +8,5 @@ const char *hextos(uint8_t value);
 const char *hextos(uint16_t value);
 const char *hextos(uint32_t value);
 const char *hextos(uint64_t value);
+
+bool cmpStrs(char string1[], const char* string2);

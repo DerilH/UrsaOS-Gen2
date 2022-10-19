@@ -2,15 +2,21 @@
 #include "../headers/Print.h"
 #include "../headers/string.h"
 #include "../headers/TextModeColors.h"
-#include "../cpp/IDT.cpp"
+#include "../headers/IDT.h"
 #include "../headers/Memory/MemoryMap.h"
 #include "../headers/Memory/MemoryManagment.h"
+#include "../headers/Shell.h"
+
+bool waiting = false;
+
+static Shell shell(inputBuffer, 128);
 
 void kernel_main() 
 {
-    
-    PrintStr("bash > ");
-    while(true);    
+    while(true)
+    {
+        shell.Call();
+    }
 }
 
 extern "C" void kernel_early_main() 
@@ -24,11 +30,11 @@ extern "C" void kernel_early_main()
 
     PrintStr("IDT init succes\n\r");
 
-    //GetUsableMemRegs();
+    GetUsableMemRegs();
     PrintStr("Memory map loaded \n\r");
 
-    //InitHeap(0x100000, 0x100000);
+    InitHeap(0x100000, 0x100000);
 
-    //kernel_main();
+    kernel_main();
 }
 

@@ -6,6 +6,8 @@
 #include "KBScanCodeSet1.h"
 #include "KeyboardHandler.h"
 
+extern void (*KeyboardHandle)(uint8_t scanCode, uint8_t chr);
+
 struct IDT
 {
     uint16_t offset_low;

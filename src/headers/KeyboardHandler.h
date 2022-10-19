@@ -5,3 +5,4 @@
 
 extern bool EnterPressed;
 void KeyboardHandler(uint8_t scanCode, uint8_t chr);
+extern char inputBuffer[128];

@@ -6,6 +6,7 @@ INPUT
 (
     obj/Program.o
     obj/Kernel.o
+    obj/IDT.o
     obj/IO.o
     obj/KeyboardHandler.o
     obj/MemoryMap.o

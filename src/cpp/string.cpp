@@ -79,3 +79,14 @@ const char *hextos(uint16_t value) {return hextosT<uint16_t>(value);};
 const char *hextos(uint32_t value) {return hextosT<uint32_t>(value);};
 const char *hextos(uint64_t value) {return hextosT<uint64_t>(value);};
 
+bool cmpStrs(char* string1, const char* string2)
+{
+  char* base = string1;
+  int i = 0;
+  while(string2[i] != 0) 
+  {
+    if(string1[i] != string2[i]) return false;
+    i++;
+  }
+  return true;
+} 
