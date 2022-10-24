@@ -40,6 +40,7 @@ jmp $
 %include "boot/IDT.asm"
 start_long_mode:
     call ActivateSSE
+
     call kernel_early_main
     jmp $
 
@@ -54,5 +55,4 @@ ActivateSSE:
     or ax, 0b1100000000
     mov cr4, rax
 ret
-
 times 3072-($-$$) db 0

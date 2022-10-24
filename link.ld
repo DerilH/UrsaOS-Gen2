@@ -8,12 +8,18 @@ INPUT
     obj/Kernel.o
     obj/IDT.o
     obj/IO.o
+    obj/Shell.o
+    obj/Screen.o
     obj/KeyboardHandler.o
     obj/MemoryMap.o
     obj/MemoryManagment.o
     obj/MemoryMapEntry.o
-    obj/Print.o
     obj/string.o
+    obj/Constructors.o
+    obj/Time.o
+    obj/Panic.o
+    obj/Pit.o
+    obj/Interrupts.o
 )
 
 OUTPUT
@@ -38,6 +44,10 @@ SECTIONS
 
     .data : ALIGN(0x1000)
     {
+          start_ctors = .;
+         KEEP(*( .init_array ));
+         KEEP(*(SORT_BY_INIT_PRIORITY( .init_array.* )));
+         end_ctors = .;
         *(.data)
     }
     

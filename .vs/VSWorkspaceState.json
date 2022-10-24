@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\Interrupts",
+    "\\src\\Memory",
+    "\\src\\Shell",
+    "\\src\\Stdlib",
+    "\\src\\Time"
+  ],
+  "SelectedNode": "\\src\\Interrupts\\IDT.cpp",
+  "PreviewInSolutionExplorer": false
+}
