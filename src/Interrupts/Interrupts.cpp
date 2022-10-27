@@ -1,18 +1,13 @@
 #include "Interrupts.h"
 #include "../kernel/Panic.h"
+#include "../Time/Pit.h"
 
-__attribute__((interrupt)) void KeyboardINT_Handler(interrupt_frame* frame) 
-{
-	Panic::Invoke("test");
-	uint8_t scanCode = inb(0x60);
-	uint8_t chr = 0;
-	if (scanCode < 0x3a)
-	{
-		chr = ScanCodeLookupTable[scanCode];
-	}
-	handler(scanCode, chr);
-	PIC_EndMaster();
-}
+extern uint64_t KeyboardISR;
+extern uint64_t pitISR;
+extern uint64_t ZeroDivideISR;
+extern uint64_t PageFaultISR;
+extern uint64_t DoubleFaultISR;
+extern uint64_t GeneralProtectionFaultISR;
 
 
 void PIC_EndMaster() {
@@ -42,4 +37,42 @@ void RemapPIC() {
 	outb(PIC1_DATA, a1);
 	outb(PIC2_DATA, a2);
 
+}
+
+extern "C" void KeyboardINT_Handler()
+{
+	uint8_t scanCode = inb(0x60);
+	uint8_t chr = 0;
+	if (scanCode < 0x3a)
+	{
+		chr = ScanCodeLookupTable[scanCode];
+	}
+	handler(scanCode, chr);
+	PIC_EndMaster();
+}
+
+extern "C" void DivideByZeroEX()
+{
+	Panic::Invoke("Zero divide");
+}
+
+extern "C" void PITINT_Handler()
+{
+	PIT::Tick();
+	PIC_EndMaster();
+}
+
+extern "C" void PageFaultEX()
+{
+	Panic::Invoke("Page fault");
+}
+
+extern "C" void DoubleFaultEX() 
+{
+	Panic::Invoke("Double fault");
+}
+
+extern "C" void GeneralProtectionFaultEX()
+{
+	Panic::Invoke("General protection fault");
 }

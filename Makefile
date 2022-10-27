@@ -2,12 +2,13 @@ kernel:
 	nasm -f bin boot/boot.asm -o bin/boot.bin
 	nasm -f elf64 boot/Program.asm -o obj/Program.o
 
+	gcc -Ttext 0x8000 -ffreestanding -mgeneral-regs-only -mno-red-zone -c "src/Interrupts/Interrupts.cpp" -o "obj/Interrupts.o"
+
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/kernel/kernel.cpp" -o "obj/kernel.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/kernel/Panic.cpp" -o "obj/Panic.o" -no-pie
 
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Interrupts/IDT.cpp" -o "obj/IDT.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Interrupts/IO.cpp" -o "obj/IO.o" -no-pie
-	gcc -Ttext 0x8000 -ffreestanding -mgeneral-regs-only -mno-red-zone -c "src/Interrupts/Interrupts.cpp" -o "obj/Interrupts.o" -no-pie
 
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Devices/KeyboardHandler.cpp" -o "obj/KeyboardHandler.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Devices/Screen.cpp" -o "obj/Screen.o" -no-pie
@@ -17,7 +18,7 @@ kernel:
 	
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/MemoryMap.cpp" -o "obj/MemoryMap.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/MemoryMapEntry.cpp" -o "obj/MemoryMapEntry.o" -no-pie
-	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/MemoryManagment.cpp" -o "obj/MemoryManagment.o" -no-pie
+	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/Memory.cpp" -o "obj/Memory.o" -no-pie
 	
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Time/Time.cpp" -o "obj/Time.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Time/Pit.cpp" -o "obj/Pit.o" -no-pie

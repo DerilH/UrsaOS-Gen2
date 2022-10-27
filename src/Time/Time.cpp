@@ -19,15 +19,15 @@ unsigned char get_RTC_register(int reg) {
     return inb(cmos_data);
 }
 
-uint8_t Time::_second = 0;
-uint8_t Time::_minute = 0;
-uint8_t Time::_hour = 0;
-uint8_t Time::_day = 0;
-uint8_t Time::_month = 0;
-uint32_t Time::_year = 0;
-uint32_t Time::_century = 0;
+uint8_t RTC::_second = 0;
+uint8_t RTC::_minute = 0;
+uint8_t RTC::_hour = 0;
+uint8_t RTC::_day = 0;
+uint8_t RTC::_month = 0;
+uint32_t RTC::_year = 0;
+uint32_t RTC::_century = 0;
 
-void Time::Update() 
+void RTC::Update()
 {
     unsigned char century;
     unsigned char last_second;
@@ -108,16 +108,16 @@ void Time::Update()
         if (_year < CURRENT_YEAR) _year += 100;
     }
 }
-uint8_t Time::GetSecond() {return _second;}
-uint8_t Time::GetMinute() {return _minute;}
-uint8_t Time::GetHour()   {return _hour;}
-uint8_t Time::GetDay()    {return _day;}
-uint8_t Time::GetMonth()  {return _month;}
-uint32_t Time::GetYear()   {return _year;}
+uint8_t RTC::GetSecond() {return _second;}
+uint8_t RTC::GetMinute() {return _minute;}
+uint8_t RTC::GetHour()   {return _hour;}
+uint8_t RTC::GetDay()    {return _day;}
+uint8_t RTC::GetMonth()  {return _month;}
+uint32_t RTC::GetYear()   {return _year;}
 
 
 char dateBuffer[20];
-const char* Time::GetFullDateAsString() 
+const char* RTC::GetFullDateAsString()
 {
 
 
@@ -210,7 +210,7 @@ const char* Time::GetFullDateAsString()
     return dateBuffer;
 }
 
-DateTime Time::GetDate()
+DateTime RTC::GetDate()
 {
     Update();
     DateTime dt;

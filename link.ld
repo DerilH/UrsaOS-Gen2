@@ -5,6 +5,7 @@ ENTRY (kernel_early_main)
 INPUT
 (
     obj/Program.o
+    obj/Interrupts.o
     obj/Kernel.o
     obj/IDT.o
     obj/IO.o
@@ -12,14 +13,13 @@ INPUT
     obj/Screen.o
     obj/KeyboardHandler.o
     obj/MemoryMap.o
-    obj/MemoryManagment.o
+    obj/Memory.o
     obj/MemoryMapEntry.o
     obj/string.o
     obj/Constructors.o
     obj/Time.o
     obj/Panic.o
     obj/Pit.o
-    obj/Interrupts.o
 )
 
 OUTPUT

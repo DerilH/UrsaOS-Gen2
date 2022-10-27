@@ -15,8 +15,12 @@
 
 #define IRQ_OFFSET 0x20
 
-struct interrupt_frame;
-__attribute__((interrupt)) void KeyboardINT_Handler(interrupt_frame* frame);
+extern uint64_t KeyboardISR;
+extern uint64_t ZeroDivideISR;
+extern uint64_t PageFaultISR;
+extern uint64_t pitISR;
+extern uint64_t DoubleFaultISR;
+extern uint64_t GeneralProtectionFaultISR;
 
 void RemapPIC();
 void PIC_EndMaster();

@@ -2,12 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\src",
+    "\\src\\Devices",
     "\\src\\Interrupts",
+    "\\src\\kernel",
     "\\src\\Memory",
+    "\\src\\Memory\\Paging",
     "\\src\\Shell",
     "\\src\\Stdlib",
     "\\src\\Time"
   ],
-  "SelectedNode": "\\src\\Interrupts\\IDT.cpp",
+  "SelectedNode": "\\src\\Memory\\Paging\\PageTableManager.cpp",
   "PreviewInSolutionExplorer": false
 }

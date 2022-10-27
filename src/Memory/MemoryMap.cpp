@@ -1,45 +1,44 @@
 #include "MemoryMap.h"
 
+const char* MemoryRegTypes[] =
+{
+    "Nothing",
+    "USABLE_MEMREG",
+    "RESERVED_MEMREG",
+    "ACPI_RECLAIMED_MEMREG",
+    "ACPI_NVS_MEMREG",
+    "BAD_MEMREG"
+};
+
 extern uint8_t MemoryRegCount;
 uint8_t UsableMemRegsCount = 0;
 
 MemoryMapEntry* MemoryMap = (MemoryMapEntry*)0x5000;
 MemoryMapEntry* UsableMemoryRegions[20];
+MemoryMapEntry* largestUsableSegment;
 
-void GetUsableMemRegs()
+void PrintMemoryMap() 
 {
-    for(int i = 0; i < MemoryRegCount; i++) 
-    {
-        if((&MemoryMap[i])->type == USABLE_MEMREG) 
-        {
-            UsableMemoryRegions[i] = (&MemoryMap[i]);
-            UsableMemRegsCount++;
-        }
-    }
-}
-
-/*void PrintMemoryMap() 
-{
-    PrintStr("Loaded ");
-    PrintStr(to_string(MemoryRegCount));
-    PrintStr(" memory regions \n\r");
+    Shell::CurrentShell->Print("Loaded ");
+    Shell::CurrentShell->Print(to_string(MemoryRegCount));
+    Shell::CurrentShell->Print(" memory regions \n\r");
 
     for (int i = 1; i < MemoryRegCount; i++)
     {
-        PrintStr("Address - ");
-        PrintStr(hextos(MemoryMap[i].address));
-        PrintStr(":\n\r");
+        Shell::CurrentShell->Print("Address - ");
+        Shell::CurrentShell->Print(hextos(MemoryMap[i].address));
+        Shell::CurrentShell->Print(":\n\r");
 
-        PrintStr("Type - ");
-        PrintStr(MemoryRegTypes[MemoryMap[i].type]);
-        PrintStr("\n\r");
+        Shell::CurrentShell->Print("Type - ");
+        Shell::CurrentShell->Print(MemoryRegTypes[MemoryMap[i].type]);
+        Shell::CurrentShell->Print("\n\r");
 
-        PrintStr("Size - ");
-        PrintStr(to_string(MemoryMap[i].size));
-        PrintStr("\n\r");
+        Shell::CurrentShell->Print("Size - ");
+        Shell::CurrentShell->Print(to_string(MemoryMap[i].size));
+        Shell::CurrentShell->Print("\n\r");
             
-        PrintStr("Attributes - ");
-        PrintStr(hextos(MemoryMap[i].attributes));
-        PrintStr("\n\r");
+        Shell::CurrentShell->Print("Attributes - ");
+        Shell::CurrentShell->Print(hextos(MemoryMap[i].attributes));
+        Shell::CurrentShell->Print("\n\r");
     }
-}*/
+}

@@ -24,6 +24,54 @@ idtDescriptor:
 
   %endmacro
 
+[extern KeyboardINT_Handler]
+KeyboardISR:
+    PUSHALL
+    call KeyboardINT_Handler
+    POPALL
+    iretq
+    GLOBAL KeyboardISR
+    
+[extern DivideByZeroEX]
+ZeroDivideISR:
+    PUSHALL
+    call DivideByZeroEX
+    POPALL
+    iretq
+    GLOBAL ZeroDivideISR
+
+[extern PageFaultEX]
+PageFaultISR:
+    PUSHALL
+    call PageFaultEX
+    POPALL
+    iretq
+    GLOBAL PageFaultISR
+
+[extern PITINT_Handler]
+pitISR:
+    PUSHALL
+    call PITINT_Handler
+    POPALL
+    iretq
+    GLOBAL pitISR;
+
+[extern DoubleFaultEX]
+DoubleFaultISR:
+    PUSHALL
+    call DoubleFaultEX
+    POPALL
+    iretq
+    GLOBAL DoubleFaultISR
+
+[extern GeneralProtectionFaultEX]
+GeneralProtectionFaultISR:
+    PUSHALL
+    call GeneralProtectionFaultEX
+    POPALL
+    iretq
+    GLOBAL GeneralProtectionFaultISR
+
 LoadIDT:
   lidt[idtDescriptor]
   sti

@@ -13,7 +13,7 @@ struct DateTime
     uint32_t year;
 };
 
-class Time 
+class RTC 
 {
 private:
     static uint8_t _second;

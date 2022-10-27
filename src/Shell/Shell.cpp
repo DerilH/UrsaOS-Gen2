@@ -1,7 +1,8 @@
 #include "Shell.h"
 #include <map>
 
-Shell *Shell::_instance = nullptr;
+Shell* Shell::_instance = nullptr;
+Shell* Shell::CurrentShell = nullptr;
 
 void Shell::_responseKeyboard(uint8_t scanCode, uint8_t chr)
 {
@@ -98,6 +99,7 @@ Shell::Shell(Screen* screen)
     this->_screen = screen;
     _screen->SetCursorPos(0);
     _instance = this;
+    CurrentShell = this;
     KeyboardHandler::RemoveHandler(_responceKeyboardS);
     KeyboardHandler::AddHandler(_responceKeyboardS);
 }
@@ -147,6 +149,10 @@ void Shell::_handleCommand(const char* cmd)
 {
     if (cmpStrs(_inputBuffer, "date")) 
     {
-        Print(Time::GetFullDateAsString());
+        Print(RTC::GetFullDateAsString());
+    }
+    else if(cmpStrs(_inputBuffer, "memmap"))
+    {
+        PrintMemoryMap();
     }
 }

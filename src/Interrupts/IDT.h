@@ -24,12 +24,12 @@ private:
     Interrupts();
 
     static bool _initialized;
-    static void _setHandler(uint64_t handler, IDTEntry* entry);
+    static void _setHandler(uint64_t* handler, IDTEntry* entry);
     static IDTEntry* _IDT;
 public:
     static void Init();
     static void AddInterrupt(IDTEntry entry, uint8_t number);
-    static void AddInterrupt(uint64_t handler, uint8_t ist, uint16_t selector, uint8_t types_attr, uint8_t number);
+    static void AddInterrupt(uint64_t* handler, uint8_t ist, uint16_t selector, uint8_t types_attr, uint8_t number);
     static void RemoveInterrupt(IDTEntry* entry);
     static void RemoveInterrupt(uint8_t number);
     static void DisableInterrupts();

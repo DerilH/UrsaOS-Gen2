@@ -11,3 +11,7 @@ unsigned char inb(unsigned short port){
   : "Nd"(port));
   return returnVal;
 }
+
+void io_wait() {
+    asm volatile ("outb %%al, $0x80" : : "a"(0));
+}
