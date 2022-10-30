@@ -33,3 +33,18 @@ SetupIndentityPaging:
     or eax, 1 << 31
     mov cr0, eax
 ret
+
+DisablePaging:
+  mov ebx, cr0
+  and ebx, ~(1 << 31)
+  mov cr0, ebx
+
+ret
+GLOBAl DisablePaging
+
+EnablePaging:
+  or ebx, (1 << 31) | (1 << 0)
+  mov cr0, ebx
+ret
+
+GLOBAL EnablePaging

@@ -14,12 +14,16 @@ INPUT
     obj/KeyboardHandler.o
     obj/MemoryMap.o
     obj/Memory.o
-    obj/MemoryMapEntry.o
+    obj/PageFrameAllocator.o
     obj/string.o
     obj/Constructors.o
     obj/Time.o
     obj/Panic.o
     obj/Pit.o
+    obj/Bitmap.o
+    obj/PageTableManager.o
+    obj/PageMapIndexer.o
+    obj/Paging.o
 )
 
 OUTPUT
@@ -29,8 +33,10 @@ OUTPUT
 
 SECTIONS
 {
-    . = 0x8000;
+ 	
 
+     . = 0x8000;
+     _KernelStart = .;
     .text : ALIGN(0x1000)
     {
         *(.text)
@@ -61,4 +67,5 @@ SECTIONS
         *(COMMON)
         *(.bss)
     }
+     _KernelEnd = .;
 }

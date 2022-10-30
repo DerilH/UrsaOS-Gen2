@@ -116,6 +116,12 @@ void Shell::Print(char chr)
     _screen->SetCursorPos(_cursorPos);
 }
 
+void Shell::PrintLine(const char* str) 
+{
+    Print(str);
+    PrintCLRF();
+}
+
 void Shell::PrintBackspace()
 {
     _cursorPos--;
@@ -145,14 +151,48 @@ void Shell::SetForegroundColor(uint8_t color)
     this->_foreColor = color;
 }
 
-void Shell::_handleCommand(const char* cmd) 
+void Shell::_handleCommand(const char* cmd)
 {
-    if (cmpStrs(_inputBuffer, "date")) 
+    if (cmpStrs(_inputBuffer, "date"))
     {
         Print(RTC::GetFullDateAsString());
     }
-    else if(cmpStrs(_inputBuffer, "memmap"))
+    else if (cmpStrs(_inputBuffer, "memmap"))
     {
         PrintMemoryMap();
+    }
+    else if (cmpStrs(_inputBuffer, "getmem"))
+    {
+        Print("Total: ");
+        Print(to_string(PageFrameAllocator::GetFullMemorySize()));
+        PrintLine(" bytes");
+        Print("Free: ");
+        Print(to_string(PageFrameAllocator::GetFreeMemorySize()));
+        PrintLine(" bytes");
+        Print("Reserved: ");
+        Print(to_string(PageFrameAllocator::GetReservedMemorySize()));
+        PrintLine(" bytes");
+        Print("Used: ");
+        Print(to_string(PageFrameAllocator::GetUsedMemorySize()));
+        PrintLine(" bytes");
+    }
+    else if (cmpStrs(_inputBuffer, "getmemkb"))
+    {
+        Print("Total: ");
+        Print(to_string(PageFrameAllocator::GetFullMemorySize() / 1000));
+        PrintLine(" kb");
+        Print("Free: ");
+        Print(to_string(PageFrameAllocator::GetFreeMemorySize() / 1000));
+        PrintLine(" kb");
+        Print("Reserved: ");
+        Print(to_string(PageFrameAllocator::GetReservedMemorySize() / 1000));
+        PrintLine(" kb");
+        Print("Used: ");
+        Print(to_string(PageFrameAllocator::GetUsedMemorySize() / 1000));
+        PrintLine(" kb");
+    }
+    else if(cmpStrs(_inputBuffer, "bitmap"))
+    {
+        PageFrameAllocator::PrintBitmap();
     }
 }

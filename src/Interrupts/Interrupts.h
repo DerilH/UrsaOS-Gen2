@@ -21,6 +21,7 @@ extern uint64_t PageFaultISR;
 extern uint64_t pitISR;
 extern uint64_t DoubleFaultISR;
 extern uint64_t GeneralProtectionFaultISR;
+extern uint64_t DefaultISR;
 
 void RemapPIC();
 void PIC_EndMaster();

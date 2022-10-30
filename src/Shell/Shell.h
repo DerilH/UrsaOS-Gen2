@@ -7,6 +7,7 @@
 #include "../Time/Time.h"
 #include "../Memory/MemoryMap.h"
 #include "../Memory/Memory.h"
+#include "../Memory/Paging/PageFrameAllocator.h"
 
 #define INPUT_BUFFER_SIZE 128
 
@@ -41,6 +42,7 @@ public:
     Shell(Screen* screen);
     void Print(const char* str);
     void Print(char chr);
+    void PrintLine(const char* str);
     void PrintBackspace();
     void PrintCLRF(bool CL = true, bool RF = true);
     void SetBackgroundColor(uint8_t color);

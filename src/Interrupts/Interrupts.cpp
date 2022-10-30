@@ -8,7 +8,7 @@ extern uint64_t ZeroDivideISR;
 extern uint64_t PageFaultISR;
 extern uint64_t DoubleFaultISR;
 extern uint64_t GeneralProtectionFaultISR;
-
+extern uint64_t DefaultISR;
 
 void PIC_EndMaster() {
 	outb(PIC1_COMMAND, PIC_EOI);
@@ -75,4 +75,9 @@ extern "C" void DoubleFaultEX()
 extern "C" void GeneralProtectionFaultEX()
 {
 	Panic::Invoke("General protection fault");
+}
+
+extern "C" void DefaultEX() 
+{
+	Panic::Invoke("Fault");
 }

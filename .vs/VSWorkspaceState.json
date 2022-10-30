@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
+    "\\boot",
     "\\src",
-    "\\src\\Devices",
     "\\src\\Interrupts",
     "\\src\\kernel",
     "\\src\\Memory",
@@ -11,6 +11,6 @@
     "\\src\\Stdlib",
     "\\src\\Time"
   ],
-  "SelectedNode": "\\src\\Memory\\Paging\\PageTableManager.cpp",
+  "SelectedNode": "\\src\\Memory",
   "PreviewInSolutionExplorer": false
 }

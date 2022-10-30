@@ -72,14 +72,11 @@ void kfree(void *ptr)
     }
 }
 
-void memset(void* dst, int value, uint64_t num) 
-{
-    int* dstI = (int*)dst;
-    for (int i = 0; i < num; i++) 
-    {
-        *dstI = value;
-        dstI++;
+void* memset(void* start, uint8_t value, uint64_t num) {
+    for (uint64_t i = 0; i < num; i++) {
+        *(uint8_t*)((uint64_t)start + i) = value;
     }
+    return start;
 }
 
 void *memcpy(void *dst, const void *src, uint64_t n)
@@ -115,13 +112,3 @@ void MergeSegments(MemorySegmentHeader* firstSeg, MemorySegmentHeader* secondSeg
     firstSeg->nextSeg = secondSeg->nextSeg;
     firstSeg->nextSeg->prevSeg = firstSeg;
 }
-
-/*void* operator new(uint64_t size)
-{
-    return malloc(size);
-}
-
-void* operator new[](uint64_t size) 
-{
-    return malloc(size);
-}*/

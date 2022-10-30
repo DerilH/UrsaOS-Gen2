@@ -20,9 +20,10 @@ void (*KeyboardHandle)(uint8_t scanCode, uint8_t chr);
 
 
 #define ZERO_DIVIDE_FAULT				0x00
+
 #define DOUBLE_FAULT					0x08
 #define GENERAL_PROTECTON_FAULT			0x0D
-#define PAGE_FAULT_FAULT				0xE
+#define PAGE_FAULT_FAULT				0x0E
 
 IDTEntry* Interrupts::_IDT = nullptr;
 bool Interrupts::_initialized = false;
@@ -44,12 +45,20 @@ void Interrupts::Init()
 	AddInterrupt(&KeyboardISR, 0, 0x08, 0x8e, IRQ_KEYBOARD);
 	AddInterrupt(&pitISR, 0, 0x08, 0x8e, INT_TIMER);
 
+	for (int i = 0; i <= 30; i++) 
+	{
+		if (i == 22)
+			i = 28;
+		AddInterrupt(&DefaultISR, 0, 0x08, 0x8e, i);
+	}
+
 	AddInterrupt(&ZeroDivideISR, 0, 0x08, 0x8e, ZERO_DIVIDE_FAULT);
 	AddInterrupt(&PageFaultISR, 0, 0x08, 0x8e, PAGE_FAULT_FAULT);
 
 	AddInterrupt(&GeneralProtectionFaultISR, 0, 0x08, 0x8e, GENERAL_PROTECTON_FAULT);
 	AddInterrupt(&DoubleFaultISR, 0, 0x08, 0x8e, DOUBLE_FAULT);
 
+	
 
 	LoadIDT();
 	RemapPIC();

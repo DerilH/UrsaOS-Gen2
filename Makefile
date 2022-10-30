@@ -15,11 +15,16 @@ kernel:
 
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Stdlib/string.cpp" -o "obj/string.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Stdlib/Constructors.cpp" -o "obj/Constructors.o" -no-pie
+	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Stdlib/Bitmap.cpp" -o "obj/Bitmap.o" -no-pie
 	
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/MemoryMap.cpp" -o "obj/MemoryMap.o" -no-pie
-	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/MemoryMapEntry.cpp" -o "obj/MemoryMapEntry.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/Memory.cpp" -o "obj/Memory.o" -no-pie
-	
+
+	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/Paging/Paging.cpp" -o "obj/Paging.o" -no-pie
+	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/Paging/PageFrameAllocator.cpp" -o "obj/PageFrameAllocator.o" -no-pie
+	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/Paging/PageMapIndexer.cpp" -o "obj/PageMapIndexer.o" -no-pie
+	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Memory/Paging/PageTableManager.cpp" -o "obj/PageTableManager.o" -no-pie
+
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Time/Time.cpp" -o "obj/Time.o" -no-pie
 	gcc -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -c "src/Time/Pit.cpp" -o "obj/Pit.o" -no-pie
 

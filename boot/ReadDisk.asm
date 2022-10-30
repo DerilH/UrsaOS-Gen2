@@ -4,7 +4,7 @@ ReadDisk:
    
     mov ah, 0x02
     mov bx, KERNEL_SPACE
-    mov al, 57
+    mov al, 77
     mov dl, [BOOT_DISK]
     mov ch, 0x00
     mov dh, 0x00

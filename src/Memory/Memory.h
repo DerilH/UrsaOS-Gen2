@@ -12,6 +12,7 @@ struct MemorySegmentHeader
     bool Free = true;
 };
 
+void* memset(void* dst, uint8_t value, uint64_t num);
 void InitHeap(uint64_t address, uint64_t size);
 void* kmalloc(uint64_t size);
 void kfree(void *ptr);

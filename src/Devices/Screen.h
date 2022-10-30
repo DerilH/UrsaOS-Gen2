@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "../Stdlib/TextModeColors.h"
 #include "../Interrupts/IO.h"
+#define VIDEO_MEMORY (uint8_t*)0xb8000
 
 class Screen 
 {

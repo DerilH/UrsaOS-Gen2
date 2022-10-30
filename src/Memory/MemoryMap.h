@@ -17,7 +17,9 @@ struct MemoryMapEntry
     uint32_t attributes;
 };
 
-MemoryMapEntry** GetUsableMemRegs();
 void PrintMemoryMap();
+
+extern uint8_t MemoryRegCount;
+extern MemoryMapEntry* MemoryMap;
 
 extern const char* MemoryRegTypes[];

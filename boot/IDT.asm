@@ -71,7 +71,13 @@ GeneralProtectionFaultISR:
     POPALL
     iretq
     GLOBAL GeneralProtectionFaultISR
-
+[extern DefaultEX]
+DefaultISR:
+    PUSHALL
+    call DefaultEX
+    POPALL
+    iretq
+    GLOBAL DefaultISR
 LoadIDT:
   lidt[idtDescriptor]
   sti

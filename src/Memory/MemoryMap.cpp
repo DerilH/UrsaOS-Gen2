@@ -14,8 +14,6 @@ extern uint8_t MemoryRegCount;
 uint8_t UsableMemRegsCount = 0;
 
 MemoryMapEntry* MemoryMap = (MemoryMapEntry*)0x5000;
-MemoryMapEntry* UsableMemoryRegions[20];
-MemoryMapEntry* largestUsableSegment;
 
 void PrintMemoryMap() 
 {

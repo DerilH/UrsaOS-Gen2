@@ -1,5 +1,4 @@
 #include "Screen.h"
-#define VIDEO_MEMORY (uint8_t*)0xb8000
 
 Screen* Screen::CurrentScreen = nullptr;
 
