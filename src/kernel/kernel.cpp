@@ -62,23 +62,23 @@ extern "C" void kernel_early_main()
 
     PageFrameAllocator::Init(MemoryMap, MemoryRegCount);
     PageFrameAllocator::LockPages(&_KernelStart, KernelSize / 4096 + 1);
-    PageFrameAllocator::LockPages((void*)0, 8);
-
+    PageFrameAllocator::LockPages((void*)0, 64);
+    PageFrameAllocator::LockPage((void*)0xb8000);
+    PageFrameAllocator::LockPages((void*)0x100000, 0x100000 / 4096 + 1);
     //Paging
     PageTable* PML4 = (PageTable*)PageFrameAllocator::RequestPage();
     memset(PML4, 0, 0x1000);
 
     pageTableManager = PageTableManager(PML4);
+    Screen::CurrentScreen->PutString(to_string(PageFrameAllocator::GetFullMemorySize()), BACKGROUND_BLACK, FOREGROUND_LIGHTRED, 0, 1);
+    Interrupts::DisableInterrupts();
 
-    
-    //Shell::CurrentShell->PrintLine(to_string(PageFrameAllocator::GetFullMemorySize()));
-
-    for (uint64_t t = 0x0000; t < PageFrameAllocator::GetFullMemorySize() - 0x500000; t += 0x1000) {
+    for (uint64_t t = 0x0000; t < PageFrameAllocator::GetFullMemorySize() - 0x10000; t += 0x1000) {
         pageTableManager.MapMemory((void*)t, (void*)t);
-        Screen::CurrentScreen->PutString(to_string(t), BACKGROUND_BLACK, FOREGROUND_LIGHTRED, 0, 0);
+        //Screen::CurrentScreen->PutString(to_string(t), BACKGROUND_BLACK, FOREGROUND_LIGHTRED, 0, 0);
     }
     
     asm("mov %0, %%cr3" : : "r" (PML4));
+    Interrupts::EnableInterrupts();
     kernel_main();
 }
-

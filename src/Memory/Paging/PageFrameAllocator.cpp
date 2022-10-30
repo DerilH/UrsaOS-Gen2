@@ -58,7 +58,7 @@ void PageFrameAllocator::Init(MemoryMapEntry* mMap, uint8_t mMapEntriesCount)
 	{
 		entry = _mMap;
 		
-		if(entry->type == RESERVED_MEMREG || entry->type == ACPI_NVS_MEMREG || entry->type == ACPI_RECLAIMED_MEMREG)
+		if(entry->type == RESERVED_MEMREG || entry->type == ACPI_NVS_MEMREG || entry->type == ACPI_RECLAIMED_MEMREG || entry->type == BAD_MEMREG)
 			ReservePages((void*)entry->address, entry->size / 4096 + 1);
 
 		_mMap++;

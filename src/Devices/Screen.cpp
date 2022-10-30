@@ -22,7 +22,7 @@ int Screen::PutString(const char* str, uint8_t backcolor, uint8_t forecolor, int
     uint16_t posBackup = _cursorPos;
     uint8_t* charPtr = (uint8_t*)str;
     int relatedPos;
-    _cursorPos = x + y * _width;
+    _cursorPos = x + y * 80;
     while(*charPtr != 0) 
     {
         if(*charPtr == '\n') 
