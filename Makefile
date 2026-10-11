@@ -1,10 +1,8 @@
 CC = gcc
 ASM = nasm
 
-# Основные флаги компиляции для ядра (включая защиту от переполнения стека -fno-stack-protector)
 CFLAGS = -Ttext 0x8000 -nostdlib -nodefaultlibs -ffreestanding -mno-red-zone -m64 -fno-stack-protector -no-pie
 
-# Специальные флаги для Interrupts.cpp (с сохранением -mgeneral-regs-only)
 CFLAGS_INTERRUPTS = -Ttext 0x8000 -ffreestanding -mgeneral-regs-only -mno-red-zone -fno-stack-protector
 
 kernel:
