@@ -1,5 +1,4 @@
 #include "Shell.h"
-#include <map>
 
 Shell* Shell::_instance = nullptr;
 Shell* Shell::CurrentShell = nullptr;

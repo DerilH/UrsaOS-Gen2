@@ -6,7 +6,7 @@ INPUT
 (
     obj/Program.o
     obj/Interrupts.o
-    obj/Kernel.o
+    obj/kernel.o
     obj/IDT.o
     obj/IO.o
     obj/Shell.o
@@ -28,7 +28,7 @@ INPUT
 
 OUTPUT
 (
-    bin/Kernel.bin
+    bin/kernel.bin
 )
 
 SECTIONS
